@@ -6,7 +6,7 @@ import { useState, useRef, useEffect, Suspense } from "react";
 
 function ParticleSwarm(props: Record<string, unknown>) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const targetSpeed = useRef({ x: 0, y: 0 });
 
