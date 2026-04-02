@@ -39,19 +39,17 @@ function ParticleSwarm(props: Record<string, unknown>) {
   useFrame((state, delta) => {
     if (ref.current) {
       // Smoothly interpolate the target rotation speed to match the mouse distance from center
-      targetSpeed.current.x += (mouse.current.x * 1.5 - targetSpeed.current.x) * 0.05;
-      targetSpeed.current.y += (mouse.current.y * 1.5 - targetSpeed.current.y) * 0.05;
+      // Reduced speed multipliers for a more professional look
+      targetSpeed.current.x += (mouse.current.x * 0.5 - targetSpeed.current.x) * 0.05;
+      targetSpeed.current.y += (mouse.current.y * 0.5 - targetSpeed.current.y) * 0.05;
 
-      // Change rotation based on mouse position (above/below/sides)
-      // mouse.y > 0 (above center) -> subtract from rotation.x (rotates top-down, moves surface UP)
-      ref.current.rotation.x -= targetSpeed.current.y * delta;
-      
-      // mouse.x > 0 (right of center) -> add to rotation.y (rotates left-right, moves surface RIGHT)
-      ref.current.rotation.y += targetSpeed.current.x * delta;
+      // Subtle base rotation + mouse-influenced rotation
+      ref.current.rotation.x -= (targetSpeed.current.y + 0.05) * delta;
+      ref.current.rotation.y += (targetSpeed.current.x + 0.05) * delta;
 
-      // Slight 3D parallax position shift in the direction of the arrow (mouse)
-      ref.current.position.x += (mouse.current.x * 0.4 - ref.current.position.x) * 0.05;
-      ref.current.position.y += (mouse.current.y * 0.4 - ref.current.position.y) * 0.05;
+      // Smoother, less intense parallax position shift
+      ref.current.position.x += (mouse.current.x * 0.2 - ref.current.position.x) * 0.03;
+      ref.current.position.y += (mouse.current.y * 0.2 - ref.current.position.y) * 0.03;
     }
   });
 
