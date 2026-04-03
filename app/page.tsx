@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-// Components with potential for runtime errors or heavy assets
-const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
-const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
-const CalligraphySection = dynamic(() => import("@/components/CalligraphySection"), { ssr: false });
-const Process = dynamic(() => import("@/components/Process"), { ssr: false });
+// Temporarily disabling 3D components to isolate the loading issue
+// const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
+// const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
+// const CalligraphySection = dynamic(() => import("@/components/CalligraphySection"), { ssr: false });
+// const Process = dynamic(() => import("@/components/Process"), { ssr: false });
 
 // Statically optimized components
 import About from "@/components/About";
@@ -18,31 +18,25 @@ import FAQ from "@/components/FAQ";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black">
-      {/* 3D Background - isolated from other components */}
-      <Suspense fallback={null}>
-        <Scene />
-      </Suspense>
-
       <div className="relative z-10 w-full overflow-hidden">
-        {/* Hero - isolated */}
-        <Suspense fallback={<div className="h-screen flex items-center justify-center text-neutral-800 font-mono text-xs uppercase tracking-widest">Initialising Hero Engine...</div>}>
-          <Hero />
-        </Suspense>
+        {/* Placeholder for Hero during diagnostics */}
+        <section className="h-screen flex items-center justify-center text-center px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter mb-8 text-gradient">
+              Architecting <br /> Revenue.
+            </h1>
+            <p className="text-xl text-neutral-400">Diagnostic mode: 3D components temporarily disabled to isolate loading loop.</p>
+          </div>
+        </section>
         
         <TrustSignals />
         <About />
         
-        {/* Calligraphy - isolated */}
-        <Suspense fallback={<div className="h-screen bg-black" />}>
-          <CalligraphySection />
-        </Suspense>
+        {/* <CalligraphySection /> */}
         
         <Services />
         
-        {/* Process - isolated */}
-        <Suspense fallback={<div className="h-96 bg-black" />}>
-          <Process />
-        </Suspense>
+        {/* <Process /> */}
         
         <Projects />
         <FAQ />
