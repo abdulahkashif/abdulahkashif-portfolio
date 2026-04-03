@@ -19,7 +19,7 @@ export default function Hero() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12 overflow-hidden bg-black">
+    <section ref={container} className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12 overflow-hidden bg-transparent">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="overflow-hidden">
           <h1 className="hero-text text-5xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-[0.9] text-white">

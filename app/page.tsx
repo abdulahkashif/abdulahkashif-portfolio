@@ -1,3 +1,5 @@
+"use client";
+
 import AnimatedNavbar from "@/components/AnimatedNavbar";
 import About from "@/components/About";
 import Services from "@/components/Services";
