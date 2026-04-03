@@ -3,13 +3,12 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-// --- DYNAMIC 3D COMPONENTS (Hydration Safe) ---
-const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
+// --- DYNAMIC COMPONENTS ---
+// Only keeping Hero as the 3D interaction engine to prevent browser crash
 const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
-const CalligraphySection = dynamic(() => import("@/components/CalligraphySection"), { ssr: false });
-const Process = dynamic(() => import("@/components/Process"), { ssr: false });
 
-// --- PREMIUM STATIC COMPONENTS ---
+// Using standard components for stability
+import Scene from "@/components/Scene";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
@@ -19,14 +18,12 @@ import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-black">
-      {/* 3D Background Scene */}
-      <Suspense fallback={null}>
-        <Scene />
-      </Suspense>
+    <main className="relative min-h-screen bg-black text-white">
+      {/* 0% CPU CSS Background */}
+      <Scene />
 
       <div className="relative z-10 w-full overflow-hidden">
-        {/* Premium Hero with Spline */}
+        {/* The Single Spline 3D Engine */}
         <Suspense fallback={<div className="h-screen flex items-center justify-center text-neutral-800 font-mono text-xs uppercase tracking-widest">Initialising 3D Engine...</div>}>
           <Hero />
         </Suspense>
@@ -34,17 +31,12 @@ export default function Home() {
         <TrustSignals />
         <About />
         
-        <Suspense fallback={<div className="h-screen bg-black" />}>
-          <CalligraphySection />
-        </Suspense>
-        
+        {/* Services & Solutions */}
         <Services />
         
-        <Suspense fallback={<div className="h-96 bg-black" />}>
-          <Process />
-        </Suspense>
-        
+        {/* Projects / Case Studies */}
         <Projects />
+        
         <FAQ />
         <Contact />
       </div>
