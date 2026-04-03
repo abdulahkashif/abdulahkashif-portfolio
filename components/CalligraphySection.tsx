@@ -4,9 +4,9 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Line } from "@react-three/drei";
 import * as THREE from "three";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 
-function CalligraphyStroke({ points, progress }: { points: THREE.Vector3[], progress: any }) {
+function CalligraphyStroke({ points, progress }: { points: THREE.Vector3[], progress: MotionValue<number> }) {
   const lineRef = useRef<any>(null);
 
   // Animate the line drawing based on scroll progress

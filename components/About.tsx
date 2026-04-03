@@ -4,12 +4,12 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { motion } from "framer-motion";
+import SmoothReveal from "./SmoothReveal";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-import SmoothReveal from "./SmoothReveal";
 
 export default function About() {
   const container = useRef(null);

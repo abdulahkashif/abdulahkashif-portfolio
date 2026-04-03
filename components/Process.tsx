@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { RoundedBox, Float, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -79,7 +79,7 @@ function MorphingModel({ scrollProgress }: { scrollProgress: number }) {
 
 export default function Process() {
   const container = useRef(null);
-  const [scrollProgress, setScrollProgress] = useRef(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useGSAP(() => {
     const trigger = ScrollTrigger.create({
@@ -87,12 +87,12 @@ export default function Process() {
       start: "top center",
       end: "bottom center",
       onUpdate: (self) => {
-        setScrollProgress.current = self.progress;
+        setScrollProgress(self.progress);
       }
     });
 
     // Animate steps with smooth reveal
-    gsap.utils.toArray(".process-step").forEach((step: any, i) => {
+    gsap.utils.toArray(".process-step").forEach((step: any) => {
       gsap.fromTo(step, 
         { opacity: 0, x: -30 },
         { 
@@ -143,7 +143,7 @@ export default function Process() {
           <Canvas camera={{ position: [0, 0, 8] }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
-            <MorphingModel scrollProgress={scrollProgress.current} />
+            <MorphingModel scrollProgress={scrollProgress} />
           </Canvas>
           <div className="absolute bottom-6 left-0 right-0 text-center pointer-events-none">
             <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase">Architecture in Motion</span>
