@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Process from "@/components/Process";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import CalligraphySection from "@/components/CalligraphySection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <div className="relative z-10 w-full overflow-hidden">
         <Hero />
         <About />
+        <CalligraphySection />
         <Services />
         <Process />
         <Projects />

@@ -1,13 +1,17 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, Suspense, lazy } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowDownRight } from "lucide-react";
 import { motion } from "framer-motion";
+import MagneticButton from "./MagneticButton";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 export default function Hero() {
   const container = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -29,8 +33,18 @@ export default function Hero() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12">
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-start pt-20">
+    <section ref={container} className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12 overflow-hidden">
+      {/* Spline 3D Interaction Engine */}
+      <div className="absolute top-0 right-0 w-full h-full lg:w-1/2 z-0 opacity-60 pointer-events-none">
+        <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-neutral-800 font-mono text-xs uppercase tracking-widest">Initialising 3D Engine...</div>}>
+          <Spline 
+            className={`w-full h-full transition-transform duration-1000 ${isHovered ? "scale-110" : "scale-100"}`}
+            scene="https://prod.spline.design/6Wq1Q7YGyVu7Gog1/scene.splinecode" 
+          />
+        </Suspense>
+      </div>
+
+      <div className="max-w-7xl mx-auto w-full flex flex-col items-start pt-20 relative z-10">
         <div className="overflow-hidden">
           <h1 className="hero-text text-5xl md:text-7xl lg:text-9xl font-display font-bold leading-[0.9] uppercase tracking-tighter">
             Architecting
@@ -53,25 +67,26 @@ export default function Hero() {
         <div className="mt-12 md:mt-16 max-w-3xl hero-sub">
           <p className="text-xl md:text-3xl text-neutral-400 font-sans leading-tight">
             I build <span className="text-white font-medium">high-performance web solutions</span> that strip away complexity to drive <span className="text-white font-medium">measurable business growth</span>. Precision-engineered for scale.
-          import MagneticButton from "./MagneticButton";
+          </p>
+        </div>
 
-          export default function Hero() {
-            const container = useRef(null);
-          ...
-                  <div className="mt-12 hero-cta">
-                    <MagneticButton>
-                      <button
-                        className="group relative px-8 py-4 bg-white text-black font-display font-bold uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all"
-                      >
-                        <span className="relative z-10 flex items-center gap-2">
-                          Start Your Project <ArrowDownRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        </span>
-                        <div className="absolute inset-0 bg-purple-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                      </button>
-                    </MagneticButton>
-                  </div>
-                </div>
-              </section>
-            );
-          }
-
+        <div 
+          className="mt-12 hero-cta"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <MagneticButton>
+            <button
+              className={`group relative px-8 py-4 bg-white text-black font-display font-bold uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all duration-500 ${isHovered ? "ring-4 ring-purple-500/30" : ""}`}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Start Your Project <ArrowDownRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-purple-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            </button>
+          </MagneticButton>
+        </div>
+      </div>
+    </section>
+  );
+}
