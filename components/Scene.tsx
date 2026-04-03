@@ -1,82 +1,96 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { MeshDistortMaterial, Float } from "@react-three/drei";
+import { MeshDistortMaterial, Float, MeshWobbleMaterial } from "@react-three/drei";
 import { useRef, Suspense, useMemo } from "react";
 import * as THREE from "three";
 
 function ArchitecturalCore() {
   const meshRef = useRef<THREE.Mesh>(null);
   const groupRef = useRef<THREE.Group>(null);
+  const innerRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
-    if (!meshRef.current || !groupRef.current) return;
+    if (!meshRef.current || !groupRef.current || !innerRef.current) return;
     
-    // Mouse interaction for "Precision and Control"
     const { x, y } = state.mouse;
     
-    // Smoothly rotate based on mouse position
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, x * Math.PI * 0.2, 0.05);
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -y * Math.PI * 0.2, 0.05);
+    // Smoothly rotate group based on mouse position (Precision and Control)
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, x * Math.PI * 0.4, 0.05);
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -y * Math.PI * 0.4, 0.05);
 
-    // Subtle continuous rotation
+    // Subtle continuous rotation for different parts
     meshRef.current.rotation.z += 0.005;
+    innerRef.current.rotation.y -= 0.01;
   });
 
-  // Create a lattice structure
-  const latticeGeometry = useMemo(() => new THREE.IcosahedronGeometry(1.2, 1), []);
+  const latticeGeometry = useMemo(() => new THREE.IcosahedronGeometry(1.5, 1), []);
 
   return (
     <group ref={groupRef}>
       <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-        {/* The "Logic" Core */}
+        {/* The "Logic" Core - Outer Distorted Shell */}
         <mesh ref={meshRef}>
           <icosahedronGeometry args={[1, 15]} />
           <MeshDistortMaterial
             color="#c084fc"
             speed={2}
-            distort={0.3}
+            distort={0.4}
             radius={1}
             wireframe
             transparent
-            opacity={0.3}
+            opacity={0.4}
           />
         </mesh>
 
-        {/* Inner Solid Core symbolizing "Stability" */}
-        <mesh>
-          <icosahedronGeometry args={[0.4, 1]} />
+        {/* Inner Solid Core - The Stable Logic */}
+        <mesh ref={innerRef}>
+          <icosahedronGeometry args={[0.45, 1]} />
           <meshStandardMaterial
             color="#a855f7"
             emissive="#7c3aed"
-            emissiveIntensity={1}
-            metalness={0.8}
-            roughness={0.2}
+            emissiveIntensity={2}
+            metalness={0.9}
+            roughness={0.1}
           />
         </mesh>
 
-        {/* Outer Architectural Lattice */}
+        {/* Outer Architectural Lattice - Structure */}
         <mesh geometry={latticeGeometry}>
-          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.05} />
+          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.08} />
+        </mesh>
+
+        {/* Secondary Wobble Layer for Depth */}
+        <mesh scale={1.2}>
+          <icosahedronGeometry args={[1, 2]} />
+          <MeshWobbleMaterial
+            color="#c084fc"
+            speed={1}
+            factor={0.4}
+            wireframe
+            transparent
+            opacity={0.1}
+          />
         </mesh>
       </Float>
       
-      {/* Precision Lighting */}
-      <pointLight position={[2, 2, 2]} intensity={10} color="#c084fc" />
-      <pointLight position={[-2, -2, -2]} intensity={5} color="#7c3aed" />
+      {/* Precision High-Tier Lighting */}
+      <pointLight position={[5, 5, 5]} intensity={20} color="#c084fc" />
+      <pointLight position={[-5, -5, -5]} intensity={10} color="#7c3aed" />
+      <spotLight position={[0, 10, 0]} intensity={15} color="#ffffff" angle={0.3} />
     </group>
   );
 }
 
 export default function Scene() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full bg-black">
+    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full bg-[#030303]">
       <Canvas 
         camera={{ position: [0, 0, 4], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, stencil: false, depth: true }}
+        dpr={[1, 2]} // High DPI support
       >
-        <ambientLight intensity={0.4} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={10} color="#ffffff" />
+        <ambientLight intensity={0.5} />
         <Suspense fallback={null}>
           <ArchitecturalCore />
         </Suspense>
