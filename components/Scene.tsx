@@ -1,34 +1,47 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Float } from "@react-three/drei";
+import { useRef, useMemo } from "react";
+import * as THREE from "three";
+
+function ArchitecturalCore() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2;
+    meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.1;
+  });
+
+  return (
+    <group>
+      <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+        <mesh ref={meshRef}>
+          <icosahedronGeometry args={[1.5, 2]} />
+          <meshStandardMaterial
+            color="#c084fc"
+            wireframe
+            transparent
+            opacity={0.5}
+          />
+        </mesh>
+      </Float>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={10} />
+    </group>
+  );
+}
 
 export default function Scene() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full bg-[#030303] overflow-hidden">
-      {/* Premium CSS-only Animated Sphere */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.1, 1],
-          rotate: [0, 90, 180, 270, 360],
-        }}
-        transition={{ 
-          duration: 20, 
-          repeat: Infinity, 
-          ease: "linear" 
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-20"
+    <div className="fixed inset-0 z-[-1] pointer-events-none h-screen w-full bg-black">
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 45 }}
+        gl={{ antialias: true, alpha: true }}
       >
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 via-fuchsia-500 to-transparent blur-[120px]" />
-      </motion.div>
-
-      {/* Logic Grid Overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.05]" 
-        style={{ 
-          backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }} 
-      />
+        <ArchitecturalCore />
+      </Canvas>
     </div>
   );
 }
