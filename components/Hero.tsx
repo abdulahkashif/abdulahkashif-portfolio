@@ -24,23 +24,28 @@ export default function Hero() {
 
   return (
     <section ref={container} className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12">
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-start">
+      <div className="max-w-7xl mx-auto w-full flex flex-col items-start pt-20">
         <div className="overflow-hidden">
-          <h1 className="hero-text text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-none uppercase tracking-tighter">
-            Creative
+          <h1 className="hero-text text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-none uppercase tracking-tighter">
+            High-Performance
           </h1>
         </div>
         <div className="overflow-hidden flex items-center gap-4 md:gap-8 mt-2 md:mt-4">
-          <div className="hero-text hidden md:flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md">
+          <div className="hero-text hidden md:flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md">
             <ArrowDownRight className="w-8 h-8 md:w-10 md:h-10 text-purple-400" />
           </div>
-          <h1 className="hero-text text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-none uppercase tracking-tighter text-gradient">
-            Developer
+          <h1 className="hero-text text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-none uppercase tracking-tighter text-gradient">
+            Web Solutions
           </h1>
         </div>
-        <div className="mt-12 md:mt-24 max-w-xl hero-sub">
-          <p className="text-lg md:text-xl text-neutral-400 font-sans leading-relaxed">
-            Hi, I&apos;m <span className="text-white font-medium">Abdullah Kashif</span>. I build immersive, interactive, and high-performance digital experiences that bridge design and engineering.
+        <div className="overflow-hidden mt-2 md:mt-4">
+          <h1 className="hero-text text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-none uppercase tracking-tighter text-neutral-400">
+            That Drive Growth.
+          </h1>
+        </div>
+        <div className="mt-12 md:mt-24 max-w-2xl hero-sub">
+          <p className="text-xl md:text-2xl text-neutral-400 font-sans leading-relaxed">
+            Hi, I&apos;m <span className="text-white font-medium">Abdullah Kashif</span>. I translate complex business logic into beautiful, engineered products designed to scale revenue, optimize workflows, and dominate markets.
           </p>
         </div>
       </div>

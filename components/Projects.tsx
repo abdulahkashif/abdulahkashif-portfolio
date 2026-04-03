@@ -6,22 +6,22 @@ import { ExternalLink, Code2 } from "lucide-react";
 const projects = [
   {
     title: "NeuralNexus",
-    description: "Futuristic AI Agency landing page with Anti-Grid layout and Bioluminescent palette.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    description: "High-conversion marketing site engineered to captivate premium clients and drive lead generation through immersive digital storytelling.",
+    tech: ["Conversion Optimization", "UX Strategy", "Performance"],
     link: "#",
     github: "#"
   },
   {
-    title: "GraphToken",
-    description: "Instagram automated publishing pipeline using Graph API with background tasks.",
-    tech: ["Node.js", "Express", "Instagram API"],
+    title: "GraphToken Pipeline",
+    description: "Automated social media publishing workflows, eliminating hundreds of manual hours and ensuring consistent audience engagement.",
+    tech: ["Workflow Automation", "API Integration", "Operational Efficiency"],
     link: "#",
     github: "#"
   },
   {
-    title: "Onyx E-Commerce",
-    description: "High-performance headless e-commerce store focusing on micro-interactions and speed.",
-    tech: ["React", "Three.js", "Shopify"],
+    title: "Onyx Commerce",
+    description: "Optimized e-commerce architecture delivering sub-second load speeds for maximum SEO visibility and revenue growth.",
+    tech: ["E-Commerce", "SEO Optimization", "Conversion Rate"],
     link: "#",
     github: "#"
   }

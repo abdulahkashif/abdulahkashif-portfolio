@@ -1,6 +1,8 @@
 import Scene from "@/components/Scene";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Services from "@/components/Services";
+import Process from "@/components/Process";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 
@@ -14,6 +16,8 @@ export default function Home() {
       <div className="relative z-10 w-full overflow-hidden">
         <Hero />
         <About />
+        <Services />
+        <Process />
         <Projects />
         <Contact />
       </div>
