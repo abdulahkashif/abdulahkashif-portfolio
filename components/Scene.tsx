@@ -2,10 +2,24 @@
 
 export default function Scene() {
   return (
-    <div className="fixed inset-0 z-0 h-screen w-full bg-red-500 opacity-20 pointer-events-none flex items-center justify-center">
-      <span className="text-white font-mono text-4xl font-bold opacity-50 uppercase tracking-widest">
-        Engine Test Active
-      </span>
+    <div 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: 'green',
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontSize: '3rem',
+        fontWeight: 'bold'
+      }}
+    >
+      SCENE RENDERED (GREEN)
     </div>
   );
 }
