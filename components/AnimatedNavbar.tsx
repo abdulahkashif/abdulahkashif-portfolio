@@ -57,9 +57,12 @@ export default function AnimatedNavbar() {
 
         {/* CTA Button */}
         <MagneticButton>
-          <button className="px-6 py-2.5 bg-white text-black text-xs font-display font-bold uppercase tracking-widest rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300">
-            Let's Talk
-          </button>
+          <a 
+            href="#contact" 
+            className="px-6 py-2.5 bg-white text-black text-xs font-display font-bold uppercase tracking-widest rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+          >
+            Book a Call
+          </a>
         </MagneticButton>
       </nav>
     </motion.header>

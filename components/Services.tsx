@@ -7,18 +7,18 @@ import { Zap, Rocket, LineChart } from "lucide-react";
 
 const services = [
   {
-    title: "MVP Development",
-    description: "Launch your visionary product flawlessly. I build robust, scalable Minimum Viable Products precisely engineered for initial market validation and seed-stage funding.",
+    title: "Landing Page Sprint",
+    description: "For businesses needing immediate lead generation. I build high-conversion, sub-second loading landing pages designed to turn cold traffic into loyal customers in days.",
     icon: Rocket,
   },
   {
-    title: "Business Site Overhauls",
-    description: "Transform outdated digital presences into high-converting revenue engines. Complete systemic revamp aligning aesthetics with strategic business goals.",
+    title: "Corporate Authority Site",
+    description: "A professional refresh for established businesses. I overhaul outdated digital presences into premium, authoritative platforms that build instant trust and dominate SEO.",
     icon: LineChart,
   },
   {
-    title: "Performance Optimization",
-    description: "Sub-second load times and seamless interactions. I eliminate bottlenecks and restructure architectures to dominate SEO rankings and retain user attention.",
+    title: "Automation & Custom Apps",
+    description: "For businesses looking to optimize operations. I engineer custom internal tools and automated workflows that eliminate manual tasks and save your team 20+ hours a week.",
     icon: Zap,
   }
 ];

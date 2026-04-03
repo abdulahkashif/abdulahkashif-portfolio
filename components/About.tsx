@@ -15,21 +15,34 @@ export default function About() {
   const container = useRef(null);
 
   useGSAP(() => {
-    // GSAP logic preserved or enhanced
+    // GSAP logic
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative z-10 py-32 px-6 md:px-12 bg-black/50 backdrop-blur-md border-y border-white/5">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 justify-between items-start">
-        <div className="lg:w-1/3">
+    <section id="about" ref={container} className="relative z-10 py-32 px-6 md:px-12 bg-black/50 backdrop-blur-md border-y border-white/5">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 justify-between items-center">
+        
+        {/* Professional Image Placeholder */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="relative lg:w-1/3 aspect-square rounded-[40px] overflow-hidden bg-neutral-900 border border-white/10 group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+          <div className="absolute inset-0 flex items-center justify-center text-neutral-700 font-mono text-xs uppercase tracking-widest z-0 group-hover:text-purple-500/50 transition-colors">
+            [ Professional Photo ]
+          </div>
+          {/* Replace src with your actual image path */}
+          {/* <img src="/your-photo.jpg" alt="Abdullah Kashif" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" /> */}
+        </motion.div>
+
+        <div className="lg:w-2/3 flex flex-col gap-8 text-xl md:text-3xl font-sans text-neutral-300 leading-snug">
           <SmoothReveal>
-            <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tight">
-              The <br />
-              <span className="text-gradient">Philosophy</span>
+            <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tight mb-4">
+              The <span className="text-gradient">Philosophy</span>
             </h2>
           </SmoothReveal>
-        </div>
-        <div className="lg:w-2/3 flex flex-col gap-8 text-xl md:text-3xl font-sans text-neutral-300 leading-snug">
+          
           <SmoothReveal delay={0.2}>
             <p>
               I bridge the gap between <span className="text-white">complex logic</span> and <span className="text-white">profitable user experiences</span>. Digital products shouldn't just exist—they should perform as high-tier revenue engines.

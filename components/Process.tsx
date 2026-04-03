@@ -16,22 +16,27 @@ const steps = [
   {
     num: "01",
     title: "Discovery",
-    desc: "We analyze your business goals, target audience, and market positioning to formulate an unshakeable architectural strategy."
+    desc: "We analyze your business goals, target audience, and bottlenecks. No code is written until I understand your path to revenue."
   },
   {
     num: "02",
-    title: "Design",
-    desc: "Mapping the blueprint. I craft high-fidelity, conversion-focused interfaces prioritizing premium aesthetics and psychological engagement."
+    title: "Strategy",
+    desc: "Mapping the blueprint. I craft high-fidelity interfaces and performance architectures designed specifically for your growth."
   },
   {
     num: "03",
     title: "Build",
-    desc: "Translating logic to code. Rigorous engineering using modern stacks ensuring sub-second performance, scalability, and airtight security."
+    desc: "Translating logic to reality. Rigorous engineering ensuring sub-second speeds, scalability, and airtight security protocols."
   },
   {
     num: "04",
     title: "Launch",
-    desc: "The go-live protocol. Quality assurance, speed optimization, and seamless deployment delivering immediate digital authority."
+    desc: "The go-live protocol. Quality assurance, final speed optimization, and seamless deployment delivering immediate digital authority."
+  },
+  {
+    num: "05",
+    title: "Growth",
+    desc: "Post-launch support and analytics. I monitor your performance and optimize for continuous lead generation and conversion."
   }
 ];
 
