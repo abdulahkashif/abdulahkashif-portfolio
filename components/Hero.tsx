@@ -1,13 +1,18 @@
 "use client";
 
-import { useRef, useState, Suspense, lazy } from "react";
+import { useRef, useState, Suspense } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowDownRight } from "lucide-react";
 import { motion } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
+// Use dynamic import with ssr: false for Spline to prevent hydration issues
+const Spline = dynamic(() => import("@splinetool/react-spline"), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full flex items-center justify-center text-neutral-800 font-mono text-xs uppercase tracking-widest">Loading 3D Engine...</div>
+});
 
 export default function Hero() {
   const container = useRef(null);
@@ -36,12 +41,10 @@ export default function Hero() {
     <section ref={container} className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12 overflow-hidden">
       {/* Spline 3D Interaction Engine */}
       <div className="absolute top-0 right-0 w-full h-full lg:w-1/2 z-0 opacity-60 pointer-events-none">
-        <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-neutral-800 font-mono text-xs uppercase tracking-widest">Initialising 3D Engine...</div>}>
-          <Spline 
-            className={`w-full h-full transition-transform duration-1000 ${isHovered ? "scale-110" : "scale-100"}`}
-            scene="https://prod.spline.design/6Wq1Q7YGyVu7Gog1/scene.splinecode" 
-          />
-        </Suspense>
+        <Spline 
+          className={`w-full h-full transition-transform duration-1000 ${isHovered ? "scale-110" : "scale-100"}`}
+          scene="https://prod.spline.design/6Wq1Q7YGyVu7Gog1/scene.splinecode" 
+        />
       </div>
 
       <div className="max-w-7xl mx-auto w-full flex flex-col items-start pt-20 relative z-10">
@@ -76,14 +79,15 @@ export default function Hero() {
           onMouseLeave={() => setIsHovered(false)}
         >
           <MagneticButton>
-            <button
-              className={`group relative px-8 py-4 bg-white text-black font-display font-bold uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all duration-500 ${isHovered ? "ring-4 ring-purple-500/30" : ""}`}
+            <a
+              href="#contact"
+              className={`group relative flex items-center gap-2 px-8 py-4 bg-white text-black font-display font-bold uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all duration-500 ${isHovered ? "ring-4 ring-purple-500/30" : ""}`}
             >
               <span className="relative z-10 flex items-center gap-2">
                 Start Your Project <ArrowDownRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-purple-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </button>
+            </a>
           </MagneticButton>
         </div>
       </div>
