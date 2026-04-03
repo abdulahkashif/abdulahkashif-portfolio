@@ -1,69 +1,68 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
-import { useState, useRef, useEffect, Suspense } from "react";
+import { MeshDistortMaterial, Float, MeshWobbleMaterial, Icosahedron, OrbitControls, Environment } from "@react-three/drei";
+import { useRef, Suspense, useMemo } from "react";
+import * as THREE from "three";
 
-function ParticleSwarm(props: Record<string, unknown>) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = useRef<any>(null);
-  const mouse = useRef({ x: 0, y: 0 });
-  const targetSpeed = useRef({ x: 0, y: 0 });
+function ArchitecturalCore() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Create an invisible center: Normalize mouse coordinates from -1 to 1 based on screen size
-      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  useFrame((state) => {
+    if (!meshRef.current || !groupRef.current) return;
+    
+    // Mouse interaction for "Precision and Control"
+    const { x, y } = state.mouse;
+    
+    // Smoothly rotate based on mouse position
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, x * Math.PI * 0.2, 0.05);
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -y * Math.PI * 0.2, 0.05);
 
-  const [sphere] = useState(() => {
-    const array = new Float32Array(5000 * 3);
-    for (let i = 0; i < 5000; i++) {
-      const radius = 1.5;
-      const theta = 2 * Math.PI * Math.random();
-      const phi = Math.acos(2 * Math.random() - 1);
-      const x = radius * Math.sin(phi) * Math.cos(theta);
-      const y = radius * Math.sin(phi) * Math.sin(theta);
-      const z = radius * Math.cos(phi);
-      array[i * 3] = x;
-      array[i * 3 + 1] = y;
-      array[i * 3 + 2] = z;
-    }
-    return array;
+    // Subtle continuous rotation
+    meshRef.current.rotation.z += 0.005;
   });
 
-  useFrame((state, delta) => {
-    if (ref.current) {
-      // Smoothly interpolate the target rotation speed to match the mouse distance from center
-      // Reduced speed multipliers for a more professional look
-      targetSpeed.current.x += (mouse.current.x * 0.5 - targetSpeed.current.x) * 0.05;
-      targetSpeed.current.y += (mouse.current.y * 0.5 - targetSpeed.current.y) * 0.05;
-
-      // Subtle base rotation + mouse-influenced rotation
-      ref.current.rotation.x -= (targetSpeed.current.y + 0.05) * delta;
-      ref.current.rotation.y += (targetSpeed.current.x + 0.05) * delta;
-
-      // Smoother, less intense parallax position shift
-      ref.current.position.x += (mouse.current.x * 0.2 - ref.current.position.x) * 0.03;
-      ref.current.position.y += (mouse.current.y * 0.2 - ref.current.position.y) * 0.03;
-    }
-  });
+  // Create a lattice structure
+  const latticeGeometry = useMemo(() => new THREE.IcosahedronGeometry(1, 1), []);
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-        <PointMaterial
-          transparent
-          color="#c084fc"
-          size={0.008}
-          sizeAttenuation={true}
-          depthWrite={false}
-        />
-      </Points>
+    <group ref={groupRef}>
+      <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+        {/* The "Logic" Core */}
+        <mesh ref={meshRef}>
+          <icosahedronGeometry args={[1, 15]} />
+          <MeshDistortMaterial
+            color="#c084fc"
+            speed={2}
+            distort={0.3}
+            radius={1}
+            wireframe
+            transparent
+            opacity={0.3}
+          />
+        </mesh>
+
+        {/* Inner Solid Core symbolizing "Stability" */}
+        <mesh>
+          <icosahedronGeometry args={[0.4, 1]} />
+          <meshStandardMaterial
+            color="#a855f7"
+            emissive="#7c3aed"
+            emissiveIntensity={2}
+            metalness={0.8}
+            roughness={0.2}
+          />
+        </mesh>
+
+        {/* Outer Architectural Lattice */}
+        <mesh geometry={latticeGeometry}>
+          <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.1} />
+        </mesh>
+      </Float>
+      
+      {/* Dynamic lighting that follows the core */}
+      <pointLight position={[2, 2, 2]} intensity={5} color="#c084fc" />
     </group>
   );
 }
@@ -71,9 +70,12 @@ function ParticleSwarm(props: Record<string, unknown>) {
 export default function Scene() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none h-screen w-full">
-      <Canvas camera={{ position: [0, 0, 2] }}>
+      <Canvas camera={{ position: [0, 0, 4], fov: 45 }}>
+        <ambientLight intensity={0.2} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={10} color="#ffffff" />
         <Suspense fallback={null}>
-          <ParticleSwarm />
+          <ArchitecturalCore />
+          <Environment preset="city" />
         </Suspense>
       </Canvas>
     </div>

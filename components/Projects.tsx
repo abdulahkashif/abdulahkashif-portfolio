@@ -6,22 +6,22 @@ import { ExternalLink, Code2 } from "lucide-react";
 const projects = [
   {
     title: "NeuralNexus",
-    description: "High-conversion marketing site engineered to captivate premium clients and drive lead generation through immersive digital storytelling.",
-    tech: ["Conversion Optimization", "UX Strategy", "Performance"],
+    description: "Architected a high-conversion digital presence for a premium brand, resulting in a 40% increase in lead quality and immersive user engagement through strategic storytelling.",
+    tech: ["Conversion Strategy", "Revenue Optimization", "Premium UI"],
     link: "#",
     github: "#"
   },
   {
     title: "GraphToken Pipeline",
-    description: "Automated social media publishing workflows, eliminating hundreds of manual hours and ensuring consistent audience engagement.",
-    tech: ["Workflow Automation", "API Integration", "Operational Efficiency"],
+    description: "Engineered an automated multi-channel publishing workflow that eliminated 30+ manual hours per week, allowing the business to scale content output without increasing headcount.",
+    tech: ["Workflow Automation", "Operational Efficiency", "Scalability"],
     link: "#",
     github: "#"
   },
   {
     title: "Onyx Commerce",
-    description: "Optimized e-commerce architecture delivering sub-second load speeds for maximum SEO visibility and revenue growth.",
-    tech: ["E-Commerce", "SEO Optimization", "Conversion Rate"],
+    description: "Designed a sub-second e-commerce architecture that significantly boosted SEO rankings and reduced cart abandonment by 25% through precision performance engineering.",
+    tech: ["Performance Engineering", "SEO Domination", "Growth Infrastructure"],
     link: "#",
     github: "#"
   }

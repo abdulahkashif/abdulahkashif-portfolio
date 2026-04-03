@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { RoundedBox } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { RoundedBox, Float, MeshDistortMaterial } from "@react-three/drei";
+import * as THREE from "three";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -34,63 +35,76 @@ const steps = [
   }
 ];
 
-function Model() {
-  const mesh = useRef<any>(null);
+function MorphingModel({ scrollProgress }: { scrollProgress: number }) {
+  const mesh = useRef<THREE.Mesh>(null);
   const materialRef = useRef<any>(null);
 
   useFrame((state) => {
     if (!mesh.current) return;
     
-    // Rotate the model slowly
+    // Slow rotation
     mesh.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
     mesh.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.5) * 0.1;
+
+    // Control wireframe opacity and distortion based on scroll
+    if (materialRef.current) {
+      // As scroll increases, wireframe fades and distortion settles
+      materialRef.current.wireframe = scrollProgress < 0.6;
+      materialRef.current.distort = THREE.MathUtils.lerp(0.4, 0, scrollProgress);
+      materialRef.current.opacity = THREE.MathUtils.lerp(0.8, 1, scrollProgress);
+    }
   });
 
   return (
-    <group rotation={[0.2, 0.5, 0]}>
+    <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
       <RoundedBox ref={mesh} args={[3, 4, 0.2]} radius={0.1} smoothness={4}>
-        <meshStandardMaterial 
+        <MeshDistortMaterial 
           ref={materialRef}
           color="#c084fc" 
-          wireframe={true} 
+          speed={2}
+          distort={0.4}
+          radius={1}
           transparent 
           opacity={0.8}
         />
       </RoundedBox>
-    </group>
+    </Float>
   );
 }
 
 export default function Process() {
   const container = useRef(null);
+  const [scrollProgress, setScrollProgress] = useRef(0);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 20%",
-        end: "bottom 80%",
-        scrub: 1,
+    const trigger = ScrollTrigger.create({
+      trigger: container.current,
+      start: "top center",
+      end: "bottom center",
+      onUpdate: (self) => {
+        setScrollProgress.current = self.progress;
       }
     });
 
-    // Animate steps
+    // Animate steps with smooth reveal
     gsap.utils.toArray(".process-step").forEach((step: any, i) => {
       gsap.fromTo(step, 
-        { opacity: 0, x: -50 },
+        { opacity: 0, x: -30 },
         { 
           opacity: 1, 
           x: 0, 
+          duration: 1,
           scrollTrigger: {
             trigger: step,
-            start: "top 80%",
-            end: "top 50%",
+            start: "top 85%",
+            end: "top 60%",
             scrub: true
           }
         }
       );
     });
 
+    return () => trigger.kill();
   }, { scope: container });
 
   return (
@@ -124,10 +138,10 @@ export default function Process() {
           <Canvas camera={{ position: [0, 0, 8] }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
-            <Model />
+            <MorphingModel scrollProgress={scrollProgress.current} />
           </Canvas>
           <div className="absolute bottom-6 left-0 right-0 text-center pointer-events-none">
-            <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase">Interactive Architecture</span>
+            <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase">Architecture in Motion</span>
           </div>
         </div>
 
