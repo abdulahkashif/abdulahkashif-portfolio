@@ -1,18 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownRight, Rocket, ShieldCheck, Zap, BarChart3, Target, Lightbulb, CheckCircle2, Plus, Minus } from "lucide-react";
-import { useState } from "react";
+import { ArrowDownRight, Rocket, ShieldCheck, Zap, BarChart3 } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-// --- REVENUE FOCUSED COMPONENTS (CLEAN TAILWIND VERSION) ---
+// Re-enabling the 3D Background Sphere
+const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12 overflow-hidden bg-black">
-      {/* Decorative Blueprint Background */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-      
+    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <h1 className="text-5xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-[0.9] text-white">
@@ -40,7 +38,7 @@ const services = [
 
 function Services() {
   return (
-    <section id="services" className="py-32 px-6 bg-black">
+    <section id="services" className="py-32 px-6 bg-black relative z-10">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-display font-bold uppercase mb-16">Premium <span className="text-purple-500">Solutions</span></h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -74,7 +72,7 @@ const projects = [
 
 function Work() {
   return (
-    <section id="work" className="py-32 px-6 bg-neutral-950">
+    <section id="work" className="py-32 px-6 bg-neutral-950 relative z-10">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-display font-bold uppercase mb-16 text-center">Logical <span className="text-purple-500">Case Studies</span></h2>
         <div className="grid grid-cols-1 gap-12">
@@ -107,15 +105,22 @@ function Work() {
 export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
+      <Suspense fallback={null}>
+        <Scene />
+      </Suspense>
+      
       <Hero />
-      <div className="w-full py-12 border-y border-white/5 flex justify-center gap-12 opacity-30 grayscale hover:grayscale-0 transition-all">
+      
+      <div className="w-full py-12 border-y border-white/5 flex justify-center gap-12 opacity-30 grayscale hover:grayscale-0 transition-all relative z-10 bg-black/50 backdrop-blur-sm">
         <div className="flex items-center gap-2"><ShieldCheck size={16} /> <span className="text-[10px] font-mono font-bold uppercase">SSL SECURED</span></div>
         <div className="flex items-center gap-2"><Zap size={16} /> <span className="text-[10px] font-mono font-bold uppercase">99+ PAGESPEED</span></div>
         <div className="flex items-center gap-2"><BarChart3 size={16} /> <span className="text-[10px] font-mono font-bold uppercase">SEO OPTIMIZED</span></div>
       </div>
+      
       <Services />
       <Work />
-      <section className="py-32 px-6 text-center">
+      
+      <section className="py-32 px-6 text-center relative z-10 bg-black">
         <h2 className="text-4xl md:text-6xl font-bold uppercase mb-8">Ready to <span className="text-purple-500">Scale?</span></h2>
         <a href="mailto:hello@abdullahkashif.com" className="text-2xl md:text-4xl font-display underline hover:text-purple-500 transition-colors">hello@abdullahkashif.com</a>
       </section>
