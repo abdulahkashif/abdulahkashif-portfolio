@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { RoundedBox, Float, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
+import Spline from "@splinetool/react-spline";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -130,15 +131,20 @@ export default function Process() {
           </div>
         </div>
 
-        <div className="lg:w-1/2 h-[600px] sticky top-32 hidden lg:block rounded-3xl overflow-hidden border border-white/5 bg-neutral-900/20 backdrop-blur-sm">
-          {/* Blueprint to Product 3D Transition */}
-          <Canvas camera={{ position: [0, 0, 8] }}>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <MorphingModel scrollProgress={scrollProgress} />
-          </Canvas>
-          <div className="absolute bottom-6 left-0 right-0 text-center pointer-events-none">
-            <span className="text-xs font-mono tracking-widest text-neutral-500 uppercase">Architecture in Motion</span>
+        <div className="lg:w-1/2 h-[600px] sticky top-32 hidden lg:block rounded-3xl overflow-hidden border border-white/5 bg-neutral-900/20 backdrop-blur-sm relative">
+          {/* Code-to-Cloud 3D Animation (Spline) */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-50">
+            <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
+          </div>
+          <div className="absolute inset-4 border border-purple-500/10 rounded-2xl pointer-events-none" />
+          
+          <div className="absolute bottom-6 left-0 right-0 text-center pointer-events-none z-10 flex flex-col items-center">
+            <div className="bg-black/60 backdrop-blur-md px-6 py-2 rounded-full border border-white/10">
+              <span className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-bold flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Code-to-Cloud Edge Network
+              </span>
+            </div>
           </div>
         </div>
 
