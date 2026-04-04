@@ -37,7 +37,7 @@ export default function AnimatedNavbar() {
         {/* Logo */}
         <Link href="/" className="group relative">
           <span className="text-2xl font-display font-bold tracking-tighter uppercase transition-colors group-hover:text-purple-400">
-            Kashif <span className="text-purple-500 group-hover:text-white transition-colors">.</span>
+            Abdullah <span className="text-purple-500 group-hover:text-white transition-colors">.</span>
           </span>
         </Link>
 
