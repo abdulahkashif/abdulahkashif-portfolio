@@ -53,7 +53,7 @@ export default function About() {
           
           <SmoothReveal delay={0.4}>
             <p className="text-neutral-500">
-              My approach is rooted in an <span className="text-white">obsessive eye for detail</span> forged through years of practicing <span className="text-white">high-precision Arabic Calligraphy</span>. I bring that same discipline to architecture: where every line of code must be as intentional as a master&apos;s stroke.
+              My approach is rooted in an <span className="text-white">obsessive eye for detail</span> forged through years of practicing <span className="text-white">high-precision Arabic Calligraphy</span>. In Calligraphy, every stroke is intentional. In my code, there is zero wasted space. AI helps me wire logic flawlessly and launch faster; my discipline ensures the final product is perfect.
             </p>
           </SmoothReveal>
 

@@ -3,6 +3,7 @@
 import AnimatedNavbar from "@/components/AnimatedNavbar";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Comparison from "@/components/Comparison";
 import TrustSignals from "@/components/TrustSignals";
 import Projects from "@/components/Projects";
 import FAQ from "@/components/FAQ";
@@ -34,6 +35,7 @@ export default function Home() {
       <TrustSignals />
       <About />
       <Services />
+      <Comparison />
       <Projects />
       <FAQ />
       <Contact />

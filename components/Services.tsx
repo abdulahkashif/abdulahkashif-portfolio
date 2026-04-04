@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Zap, Rocket, LineChart } from "lucide-react";
+import { Zap, Rocket, LineChart, Lock, Database, Cuboid, MessageSquareCode } from "lucide-react";
 import AutomationSlider from "./AutomationSlider";
 import SmoothReveal from "./SmoothReveal";
 
@@ -95,6 +95,53 @@ export default function Services() {
               </div>
             );
           })}
+        </div>
+        
+        {/* The Component Bento Grid */}
+        <div className="mt-32">
+          <SmoothReveal>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div>
+                <h3 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tight">The <span className="text-purple-500">Engine</span></h3>
+                <p className="mt-2 text-neutral-400 font-sans max-w-xl">
+                  We don&apos;t rely on 3rd party bloat plugins. Every feature is a custom-engineered modular piece of a high-performance machine.
+                </p>
+              </div>
+              <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest font-bold">
+                Modular Architecture
+              </div>
+            </div>
+          </SmoothReveal>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="group relative p-6 md:p-8 rounded-3xl bg-neutral-900/40 border border-white/5 hover:border-emerald-500/30 transition-all duration-500 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <Lock className="w-8 h-8 text-neutral-400 group-hover:scale-110 group-hover:text-emerald-400 transition-all duration-300 mb-6" />
+              <h4 className="text-lg md:text-xl font-display font-bold">Hardened Auth</h4>
+              <p className="text-xs md:text-sm text-neutral-500 mt-2 font-sans">Enterprise-grade security protocols with zero friction.</p>
+            </div>
+
+            <div className="group relative p-6 md:p-8 rounded-3xl bg-neutral-900/40 border border-white/5 hover:border-blue-500/30 transition-all duration-500 overflow-hidden">
+               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <Database className="w-8 h-8 text-neutral-400 group-hover:scale-110 group-hover:text-blue-400 transition-all duration-300 mb-6" />
+              <h4 className="text-lg md:text-xl font-display font-bold">Edge Database</h4>
+              <p className="text-xs md:text-sm text-neutral-500 mt-2 font-sans">Sub-second query speeds replicated globally.</p>
+            </div>
+
+            <div className="group relative p-6 md:p-8 rounded-3xl bg-neutral-900/40 border border-white/5 hover:border-purple-500/30 transition-all duration-500 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <Cuboid className="w-8 h-8 text-neutral-400 group-hover:scale-110 group-hover:text-purple-400 transition-all duration-300 mb-6" />
+              <h4 className="text-lg md:text-xl font-display font-bold">3D WebGL Engine</h4>
+              <p className="text-xs md:text-sm text-neutral-500 mt-2 font-sans">Immersive experiences that capture high-ticket attention.</p>
+            </div>
+
+            <div className="group relative p-6 md:p-8 rounded-3xl bg-neutral-900/40 border border-white/5 hover:border-orange-500/30 transition-all duration-500 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <MessageSquareCode className="w-8 h-8 text-neutral-400 group-hover:scale-110 group-hover:text-orange-400 transition-all duration-300 mb-6" />
+              <h4 className="text-lg md:text-xl font-display font-bold">AI Interfaces</h4>
+              <p className="text-xs md:text-sm text-neutral-500 mt-2 font-sans">LLM-driven logic embedded directly into the core.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -15,18 +15,18 @@ if (typeof window !== "undefined") {
 const steps = [
   {
     num: "01",
-    title: "Discovery",
-    desc: "We map out your business goals and user needs. No code is written until I understand your path to revenue."
+    title: "AI-Driven Prototyping",
+    desc: "We move from idea to functional prototype in 48 hours using cutting-edge AI development workflows."
   },
   {
     num: "02",
-    title: "Execution",
-    desc: "I build a high-performance, secure version of your vision using rigorous engineering and sub-second scale integrations."
+    title: "Custom Engineering",
+    desc: "Using Cursor and Replit, I engineer a bespoke codebase tailored to your specific business logic—no unnecessary 3rd party bloat."
   },
   {
     num: "03",
-    title: "Launch & Support",
-    desc: "I handle the deployment and stay by your side for 30 days post-launch to monitor scaling, analytics and optimize conversion."
+    title: "Global Deployment",
+    desc: "Your site is deployed to a worldwide Edge Network for instant loading anywhere on earth."
   }
 ];
 
