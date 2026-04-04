@@ -19,7 +19,7 @@ const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-transparent text-white">
       <Suspense fallback={null}>
         <Scene />
       </Suspense>
