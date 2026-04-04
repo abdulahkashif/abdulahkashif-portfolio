@@ -19,7 +19,7 @@ export default function About() {
   }, { scope: container });
 
   return (
-    <section id="about" ref={container} className="relative z-10 py-32 px-6 md:px-12 bg-black/50 backdrop-blur-md border-y border-white/5">
+    <section id="about" ref={container} className="relative z-10 py-32 px-6 md:px-12 bg-[#121212]/50 backdrop-blur-md border-y border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 justify-between items-center">
         
         {/* Professional Image Placeholder */}
@@ -28,12 +28,8 @@ export default function About() {
           whileInView={{ opacity: 1, scale: 1 }}
           className="relative lg:w-1/3 aspect-square rounded-[40px] overflow-hidden bg-neutral-900 border border-white/10 group"
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-          <div className="absolute inset-0 flex items-center justify-center text-neutral-700 font-mono text-xs uppercase tracking-widest z-0 group-hover:text-purple-500/50 transition-colors">
-            [ Professional Photo ]
-          </div>
-          {/* Replace src with your actual image path */}
-          {/* <img src="/your-photo.jpg" alt="Abdullah Kashif" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" /> */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/80 to-transparent z-10" />
+          <img src="/profile.jpg" alt="Abdullah Kashif" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
         </motion.div>
 
         <div className="lg:w-2/3 flex flex-col gap-8 text-xl md:text-3xl font-sans text-neutral-300 leading-snug">
@@ -42,8 +38,14 @@ export default function About() {
               The <span className="text-gradient">Philosophy</span>
             </h2>
           </SmoothReveal>
-          
+
           <SmoothReveal delay={0.2}>
+            <p className="text-xl font-medium text-white italic border-l-2 border-purple-500 pl-4 py-2 mt-4 mb-4 bg-purple-500/5 rounded-r-lg">
+              I don&apos;t just write code; I partner with you because your business growth and success is the only true measure of my work.
+            </p>
+          </SmoothReveal>
+          
+          <SmoothReveal delay={0.3}>
             <p>
               I bridge the gap between <span className="text-white">complex logic</span> and <span className="text-white">profitable user experiences</span>. Digital products shouldn&apos;t just exist—they should perform as high-tier revenue engines.
             </p>

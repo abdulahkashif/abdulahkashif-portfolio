@@ -16,27 +16,17 @@ const steps = [
   {
     num: "01",
     title: "Discovery",
-    desc: "We analyze your business goals, target audience, and bottlenecks. No code is written until I understand your path to revenue."
+    desc: "We map out your business goals and user needs. No code is written until I understand your path to revenue."
   },
   {
     num: "02",
-    title: "Strategy",
-    desc: "Mapping the blueprint. I craft high-fidelity interfaces and performance architectures designed specifically for your growth."
+    title: "Execution",
+    desc: "I build a high-performance, secure version of your vision using rigorous engineering and sub-second scale integrations."
   },
   {
     num: "03",
-    title: "Build",
-    desc: "Translating logic to reality. Rigorous engineering ensuring sub-second speeds, scalability, and airtight security protocols."
-  },
-  {
-    num: "04",
-    title: "Launch",
-    desc: "The go-live protocol. Quality assurance, final speed optimization, and seamless deployment delivering immediate digital authority."
-  },
-  {
-    num: "05",
-    title: "Growth",
-    desc: "Post-launch support and analytics. I monitor your performance and optimize for continuous lead generation and conversion."
+    title: "Launch & Support",
+    desc: "I handle the deployment and stay by your side for 30 days post-launch to monitor scaling, analytics and optimize conversion."
   }
 ];
 
@@ -115,7 +105,7 @@ export default function Process() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative z-10 py-32 px-6 md:px-12 bg-black border-y border-white/5">
+    <section ref={container} className="relative z-10 py-32 px-6 md:px-12 bg-[#121212] border-y border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
         
         <div className="lg:w-1/2 flex flex-col gap-12">
@@ -131,7 +121,7 @@ export default function Process() {
           <div className="flex flex-col gap-12 border-l border-white/10 pl-6 md:pl-10 relative">
             {steps.map((step, index) => (
               <div key={index} className="process-step relative">
-                <div className="absolute -left-[35px] md:-left-[51px] top-0 w-4 h-4 rounded-full bg-black border border-purple-500" />
+                <div className="absolute -left-[35px] md:-left-[51px] top-0 w-4 h-4 rounded-full bg-[#121212] border border-purple-500" />
                 <span className="text-sm font-mono text-purple-400 mb-2 block">{step.num}</span>
                 <h3 className="text-2xl font-display font-bold mb-3">{step.title}</h3>
                 <p className="text-neutral-400 font-sans leading-relaxed">{step.desc}</p>

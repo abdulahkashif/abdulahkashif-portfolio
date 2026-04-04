@@ -1,13 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, ArrowRight } from "lucide-react";
+import { Send, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import SmoothReveal from "./SmoothReveal";
 
 export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+    setTimeout(() => {
+      setStatus("success");
+      setTimeout(() => setStatus("idle"), 3000);
+    }, 1200);
+  };
+
   return (
-    <section id="contact" className="relative z-10 py-32 px-6 md:px-12 bg-black overflow-hidden">
+    <section id="contact" className="relative z-10 py-32 px-6 md:px-12 bg-[#121212] overflow-hidden">
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-purple-500/10 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20">
@@ -34,6 +46,7 @@ export default function Contact() {
 
         <div className="lg:w-1/2">
           <motion.form 
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -76,8 +89,20 @@ export default function Contact() {
 
             <div className="md:col-span-2 mt-4">
               <MagneticButton>
-                <button className="w-full flex items-center justify-center gap-2 py-4 px-8 bg-white text-black font-display font-bold uppercase tracking-widest rounded-2xl hover:bg-purple-500 hover:text-white transition-all duration-500 group">
-                  Send Project Brief <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <button 
+                  type="submit" 
+                  disabled={status !== "idle"}
+                  className="w-full flex items-center justify-center gap-2 py-4 px-8 bg-white text-[#121212] font-display font-bold uppercase tracking-widest rounded-2xl hover:bg-purple-500 hover:text-white transition-all duration-500 group disabled:opacity-80 disabled:cursor-not-allowed"
+                >
+                  {status === "idle" && (
+                    <>Send Project Brief <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></>
+                  )}
+                  {status === "sending" && (
+                    <>Sending <Loader2 size={18} className="animate-spin" /></>
+                  )}
+                  {status === "success" && (
+                    <>Sent Successfully <CheckCircle2 size={18} className="text-green-500" /></>
+                  )}
                 </button>
               </MagneticButton>
             </div>

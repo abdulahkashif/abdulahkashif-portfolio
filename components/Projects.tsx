@@ -8,6 +8,7 @@ const projects = [
   {
     title: "NeuralNexus",
     challenge: "Premium brand struggling with low-quality leads and generic digital presence.",
+    pivot: "Re-architected the entire front-end funnel using WebGL and Framer Motion to instantly capture high-ticket audience attention instead of relying solely on copy.",
     strategy: "Architected an immersive storytelling site with precision animations to capture high-ticket audience attention.",
     result: "40% increase in lead quality and a 25% reduction in bounce rate within 30 days.",
     tech: ["Conversion Strategy", "Revenue Optimization", "Premium UI"],
@@ -17,6 +18,7 @@ const projects = [
   {
     title: "GraphToken Pipeline",
     challenge: "Business owners spending 30+ manual hours/week on multi-channel content publishing.",
+    pivot: "The original third-party APIs failed under rate limits; I custom-engineered a staggered background queue system to ensure 100% successful deliveries.",
     strategy: "Engineered an automated publishing engine with real-time data sync and AI-driven scheduling.",
     result: "Saved 120+ manual hours/month, allowing the team to scale output without increasing headcount.",
     tech: ["Workflow Automation", "Operational Efficiency", "Scalability"],
@@ -26,6 +28,7 @@ const projects = [
   {
     title: "Onyx Commerce",
     challenge: "Sub-optimal SEO and cart abandonment due to sluggish mobile load times.",
+    pivot: "Original database queries were blocking the critical render path. I decoupled the architecture and implemented extreme edge-caching to bypass the bottlenecks.",
     strategy: "Designed a headless architecture with sub-second performance and edge-caching optimization.",
     result: "25% decrease in cart abandonment and immediate leap to top-3 SEO rankings for core keywords.",
     tech: ["Performance Engineering", "SEO Domination", "Growth Infrastructure"],
@@ -36,7 +39,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="work" className="relative z-10 py-32 px-6 md:px-12 bg-black">
+    <section id="work" className="relative z-10 py-32 px-6 md:px-12 bg-[#121212]">
       <div className="max-w-7xl mx-auto">
         <SmoothReveal>
           <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tight mb-16">
@@ -85,6 +88,15 @@ export default function Projects() {
                     </div>
                     <p className="text-neutral-300 font-sans text-lg italic leading-relaxed">
                       &quot;{project.challenge}&quot;
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-neutral-500 text-xs font-mono uppercase tracking-widest font-bold">
+                      <Code2 size={14} className="text-purple-500" /> The Technical Hurdle
+                    </div>
+                    <p className="text-neutral-400 font-sans leading-relaxed border-l border-purple-500/30 pl-4">
+                      {project.pivot}
                     </p>
                   </div>
 
