@@ -45,13 +45,13 @@ export default function About() {
           
           <SmoothReveal delay={0.2}>
             <p>
-              I bridge the gap between <span className="text-white">complex logic</span> and <span className="text-white">profitable user experiences</span>. Digital products shouldn't just exist—they should perform as high-tier revenue engines.
+              I bridge the gap between <span className="text-white">complex logic</span> and <span className="text-white">profitable user experiences</span>. Digital products shouldn&apos;t just exist—they should perform as high-tier revenue engines.
             </p>
           </SmoothReveal>
           
           <SmoothReveal delay={0.4}>
             <p className="text-neutral-500">
-              My approach is rooted in an <span className="text-white">obsessive eye for detail</span> forged through years of practicing <span className="text-white">high-precision Arabic Calligraphy</span>. I bring that same discipline to architecture: where every line of code must be as intentional as a master's stroke.
+              My approach is rooted in an <span className="text-white">obsessive eye for detail</span> forged through years of practicing <span className="text-white">high-precision Arabic Calligraphy</span>. I bring that same discipline to architecture: where every line of code must be as intentional as a master&apos;s stroke.
             </p>
           </SmoothReveal>
 

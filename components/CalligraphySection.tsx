@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 
 function CalligraphyStroke({ points, progress }: { points: THREE.Vector3[], progress: MotionValue<number> }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const lineRef = useRef<any>(null);
 
   // Animate the line drawing based on scroll progress
@@ -85,7 +86,7 @@ export default function CalligraphySection() {
             <span className="text-gradient">Made Beautiful.</span>
           </h2>
           <p className="max-w-2xl mx-auto text-xl text-neutral-400 font-sans">
-            Inspired by the intricate flow of Arabic Calligraphy and the structural precision of Data Architecture. I don't just write code; I engineer digital legacies.
+            Inspired by the intricate flow of Arabic Calligraphy and the structural precision of Data Architecture. I don&apos;t just write code; I engineer digital legacies.
           </p>
         </motion.div>
       </div>

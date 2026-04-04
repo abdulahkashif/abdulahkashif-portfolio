@@ -15,11 +15,11 @@ export default function Contact() {
         <div className="lg:w-1/2">
           <SmoothReveal>
             <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tight mb-8">
-              Let's Scale Your <span className="text-gradient">Business</span>
+              Let&apos;s Scale Your <span className="text-gradient">Business</span>
             </h2>
           </SmoothReveal>
           <p className="text-xl text-neutral-400 font-sans leading-relaxed mb-12 max-w-lg">
-            Ready to strip away complexity and drive measurable growth? Fill out the brief below and let's engineer your next digital advantage.
+            Ready to strip away complexity and drive measurable growth? Fill out the brief below and let&apos;s engineer your next digital advantage.
           </p>
 
           <div className="space-y-6">

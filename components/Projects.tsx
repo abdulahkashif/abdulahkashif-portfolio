@@ -84,7 +84,7 @@ export default function Projects() {
                       <Target size={14} className="text-purple-500" /> The Challenge
                     </div>
                     <p className="text-neutral-300 font-sans text-lg italic leading-relaxed">
-                      "{project.challenge}"
+                      &quot;{project.challenge}&quot;
                     </p>
                   </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -42,6 +42,7 @@ const steps = [
 
 function MorphingModel({ scrollProgress }: { scrollProgress: number }) {
   const mesh = useRef<THREE.Mesh>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const materialRef = useRef<any>(null);
 
   useFrame((state) => {
@@ -92,6 +93,7 @@ export default function Process() {
     });
 
     // Animate steps with smooth reveal
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     gsap.utils.toArray(".process-step").forEach((step: any) => {
       gsap.fromTo(step, 
         { opacity: 0, x: -30 },
